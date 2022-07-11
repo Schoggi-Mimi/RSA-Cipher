@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+@media screen {
+  html {
+    background-color: #1f2833;
+    margin: 20px 0px 20px 0px;
+    font-family: Verdana,sans-serif;    
+  }
+
+  body {
+    margin: 0 auto;
+    background-color: #282d30;
+    max-width: 1000px;
+    padding: 5px 40px 20px 40px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 50px;
+    text-align: center;
+    color: #f2f2f2;
+    text-shadow: 2px 2px #116466;
+  }
+
+  footer {
+    font-size: 10px;
+    color: #f2f2f2;
+  }
+
+  article {
+    text-align: center;
+    color: #f2f2f2;
+  }
+
+  p {
+    color: #f2f2f2;
+    font-size: 18px;
+    overflow-wrap: break-word;
+  }
+
+  p b {
+    font-size: 20px;
+  }
+
+  .privatekey {
+    color: #fc4445;
+    font-size: 25px;
+  }
+
+  .publickey {
+    color: #5cdb95;
+    font-size: 25px;
+  }
+
+  .encryptmessage {
+    color: #fff67a;
+    font-size: 30px;
+    padding-left: 20px;
+    overflow-wrap: break-word;
+  }
+
+  .result {
+    color: #fff67a;
+    font-size: 30px;
+    padding-left: 20px;
+  }
+
+  .button {
+    text-align-last: right;
+    padding: 50px 0;    
+  }
+
+  .button a {
+    text-decoration: none;
+    background: #04aa6d;
+    color: #f2f2f2;
+    padding: 5px 16px;
+    border: 1px;
+    border-radius: 05px;
+    transition: all 1s;
+  }
+
+  .button a:hover {
+    color: #fff9a8;
+    background: #028cbf;
+  }
+
+  #cookieId {
+    color: #f2f2f2;
+    font-size: 18px;
+  }
+
+  #copyright {
+    color: #f2f2f2;
+    font-size: 10px;
+  }
+}

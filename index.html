@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSA Cipher</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link href="css/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <img src="./img/rsaLogo.png" alt="Logo" class="logo" />
+    <h1>Rivest, Shamir, Adleman (RSA)</h1>
+  </header>
+
+  <nav>
+    <div class="w3-row-container">
+      <div class="w3-third w3-container">
+        <a href="#information">Information</a>
+      </div>
+      <div class="w3-third w3-container">
+        <a href="#formPrime">Formular</a>
+      </div>
+      <div class="w3-third w3-container">
+        <a href="#rsaDemo">Canvas</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="w3-row-container w3-animate-opacity">
+    <article id="information">
+
+      <h2>Einführung in die RSA-Verschlüsselung</h2>
+      <p>
+        Die RSA-Verschlüsselung (auch als Public-Key-Kryptographie bezeichnet)
+        ist ein asymmetrisches Verschlüsselungsverfahren, das 1977 durch
+        die Mathematiker Ronald Rivest, Adi Shamir und Leonard Adleman
+        entwickelt wurde. Die asymmetrische Verschlüsselung ist somit ein noch
+        sehr junges Feld in der Kryptographie, deren Geschichte über 2000
+        Jahre zurückreicht. Die Sicherheit des RSA-Algorithmus basiert auf der
+        Schwierigkeit, grosse Primahlen zu dividieren. Während es im
+        Allgemeinen kein Problem darstellt, zwei Primzahlen zu multiplizieren,
+        existiert bis heute kein effizienter Algorithmus, der das Ergebnis
+        einer solchen Rechenoperation in ihre Primfaktoren zerlegen kann.
+      </p>
+
+      <h2>Wie funktioniert die Verschlüsselung?</h2>
+      <div class="w3-row">
+        <div class="w3-third">
+          <ol class="accordion">
+            <li class="menu-accordion" id="schlüssel">
+              <a href="#schlüssel" class="btn"> Schlüsselerzeugung </a>
+              <ol class="submenu-accordion">
+                <li href="#">Wähle 2 Primzahlen: p, q</li>
+                <li href="#">Berechne das Produkt: <span class="nobreak">n=p*q</span></li>
+                <li href="#">
+                  Berechne die Eulersche φ-Funktion von n: <span class="nobreak">φ(n)=(p-1)*(q-1)</span>
+                </li>
+                <li href="#">
+                  Wähle eine zu φ(n) teilerfremde Zahl e, für die gilt
+                  <span class="nobreak">1&lt;e&lt;φ(n)</span>
+                </li>
+                <li href="#">
+                  Berechne d als multiplikativ Inverses von e des Modulus
+                  φ(n): <span class="nobreak">e*d&equiv;1 mod(φ(n))</span>
+                </li>
+                <li href="#">
+                  Öffentlicher Schlüssel = (e,n) <br>Privater Schlüssel = (d,n)
+                </li>
+              </ol>
+            </li>
+            <li class="menu-accordion" id="verschlüsseln">
+              <a href="#verschlüsseln" class="btn"> Verschlüsselung </a>
+              <ol class="submenu-accordion">
+                <li href="#">Öffentlicher Schlüssel zerlegen: n, e</li>
+                <li href="#">
+                  Prüfen, ob Gross- oder Kleinbuchstabe und den ASCII-Code
+                  ermitteln i: ord(i)
+                </li>
+                <li href="#">
+                  Die verschlüsselte Nachricht x: <span class="nobreak">x+=(ord(i)^e)%n</span>
+                </li>
+              </ol>
+            </li>
+            <li class="menu-accordion" id="entschlüsseln">
+              <a href="#entschlüsseln" class="btn"> Entschlüsseln </a>
+              <ol class="submenu-accordion">
+                <li href="#">Privaten Schlüssel zerlegen: n, d</li>
+                <li href="#">
+                  Prüfen, des ASCII-Codes und einzelner Fragmente i: chr(i)
+                </li>
+                <li href="#">Entschlüsselte Nachricht y: <span class="nobreak">y+=chr(i)</span></li>
+              </ol>
+            </li>
+          </ol>
+        </div>
+        <div class="w3-twothird">
+          <p>
+            Bei asymmetrischen Kryptosystemen erzeugt jeder
+            Kommunikationspartner ein eigenes Schlüsselpaar: einen
+            öffentlichen Schlüssel und einen privaten Schlüssel. Diese 
+            Schlüssel werden zur Chiffrierung bzw. Dechiffrierung eingesetzt.
+            Jemand, der oder die über den öffentlichen Schlüssel verfügt, kann
+            verschlüsselte Daten an den Besitzer des privaten Schlüssels
+            senden, dessen digitale Signatur prüfen oder ihn authentifizieren.
+            Der private Schlüssel kann die verschlüsselten Daten wiederum
+            entschlüsseln.
+          </p>
+        </div>
+
+      </div>
+      <h2>Wie müssen Sie vorgehen?</h2>
+      <img src="./img/rsaFunktion.jpg" alt="Wie RSA Funktioniert" />
+      <p>
+        Die Handhabung ist sehr einfach:<br /><br />1. Der Empfänger wählt
+        zwei beliebig grosse Primzahlen aus (hier definiert als p und q). Je
+        grösser diese sind, desto sicherer ist Ihre Verschlüsselung. Den
+        privaten Schlüssel behält der Empfänger und den öffentlichen Schlüssel
+        macht er dem Kommunikationspartner zugänglich.<br />2. Der
+        Kommunikationspartner codiert mit diesem öffentlichen Schlüssel seine
+        Nachricht und kann sie als "Geheimtext" an den Empfänger schicken.<br />
+        3. Die Entschlüsselung dieses "Geheimtexts" ist nur noch vom Empfänger
+        mit seinem privaten Schlüssel möglich. Sollte die verschlüsselte
+        "Geheimtext" abgefangen werden, bleibt sein Inhalt dem Angreifer
+        verborgen.<br /><br />Wenn Sie jeweilige Informationen in das Formular
+        eingetragen haben, können Sie durch das Klicken auf "AUSGEBEN,
+        "ABFRAGEN" und "AUSWERTEN" ihr Resultat einsehen. Dazu werden Sie auf
+        eine andere Webseite weitergeleitet. Bitte beachten Sie, dass es sich
+        bei allen Feldern um Pflichtfelder handelt.<br />(Bevor Sie anfangen,
+        vergewissern Sie sich, ob ihre Zahl eine Primzahl ist. Dafür können Sie 
+        ihre Zahl in das Feld Primzahl-Prüfer eingeben und überprüfen. Als Alternative
+        können Sie auch Zufällige Primzahlen generieren lassen, indem Sie auf 
+        "PRIMZAHL-GENERATOR" klicken.)
+      </p>
+    </article>
+
+    <div id="formPrime">
+
+      <h2>Primzahlen Prüfer</h2>
+      <form id="form1" name="check" method="POST" action="index.html">
+        <input type="number" name="prime" class="prime" placeholder="Primzahl-Prüfer" min="1" required />
+        <input type="button" class="check" value="Prüfen" onclick="return primeCheck()"></input>
+      </form>
+
+      <h2>Zitat über Primzahlen</h2>
+      <blockquote id="zitat">Mathematicians have tried in vain to this day to discover some order in the sequence of
+        prime numbers, and we have reason to believe that it is a mystery into which the mind will never penetrate.
+      </blockquote>
+      <cite id="author">Leonard Euler</cite>
+      <br>
+
+      <h2>Wähle zwei unterschiedlich grosse Primzahlen p und q!</h2>
+      <form id="form2" method="POST" action="rsa.php">
+        <label for="primep" class="primepTitel">Primzahl p:</label>
+        <input type="number" id="primep" name="primep" onfocus="this.placeholder=''" placeholder="Primzahl p"
+          required />
+
+        <label for="primeq" class="primeqTitel">Primzahl q:</label>
+        <input type="number" id="primeq" name="primeq" onfocus="this.placeholder=''" placeholder="Primzahl q" min="1"
+          required />
+
+        <button name="submit" class="submit" type="submit" onclick="validateInput()">
+          AUSGEBEN
+        </button>
+      </form>
+
+      <button class="random" onclick="doRequest()">PRIMZAHL-GENERATOR</button>
+
+    </div>
+
+    <div id="formText">
+
+      <h2>Nachricht verschlüsseln!</h2>
+      <form method="POST" action="rsa.php">
+        <label for="message" class="messageTitel">Text:</label>
+        <textarea class="message" id="message" name="message" onfocus="this.placeholder=''"
+          placeholder="Nachricht zum verschlüsseln" required></textarea>
+
+        <label for="public" class="publicTitel">Öffentlicher Schlüssel:</label>
+        <input type="password" id="public" class="public" name="public" onfocus="this.placeholder=''"
+          placeholder="Öffentlicher Schlüssel" required />
+
+        <button name="encrypt" class="encrypt" type="submit">ABFRAGEN</button>
+      </form>
+
+    </div>
+
+    <div id="formEvaluate">
+
+      <h2>Verschlüsselte Nachricht entschlüsseln!</h2>
+      <form method="POST" action="rsa.php">
+        <label for="decode" class="decodeTitel">Code:</label>
+        <textarea id="decode" class="decode" name="decode" onfocus="this.placeholder=''"
+          placeholder="Nachricht zum entschlüsseln (Keine Leerzeichen eingeben und die Zahlen mit [Komma] abtrennen!)"
+          pattern="^\S*$" required></textarea>
+
+        <label for="private" class="privateTitel">Privater Schlüssel:</label>
+        <input type="password" id="private" class="private" name="private" onfocus="this.placeholder=''"
+          placeholder="Privater Schlüssel" required />
+
+        <button name="decrypt" class="decrypt" type="submit">
+          AUSWERTEN
+        </button>
+      </form>
+
+    </div>
+
+    <canvas id="rsaDemo"></canvas>
+  </section>
+
+  <footer>
+    <p id="copyright">RSA © Choekyel Nyungmartsang</p>
+  </footer>
+
+  <script src="./js/prime.js"></script>
+  <script src="./js/convert.js"></script>
+  
+</body>
+
+</html>
